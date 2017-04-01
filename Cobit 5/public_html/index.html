@@ -10,11 +10,11 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
         <style type="text/css">
-            #EDM { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
-            #APO { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
-            #BAI { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
-            #DSS { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
-            #MEA { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
+            #EDM { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #APO { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #BAI { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #DSS { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #MEA { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
             
         </style>
         
@@ -72,9 +72,11 @@ and open the template in the editor.
 
     </head>
     <body>
+        <p align='center'>CLIQUE E ARRASTE OS PROCESSOS PARA OS DOMÍNIOS DO COBIT 5</p>
+        <div>Faltam <b id="textqtdeProcessosParaAcabar">37</b> processos para terminar.</div> 
         <div>Quantidade de acertos: <b id="textcontAcertos">0</b> </div> 
         <div>Quantidade de erros: <b id="textcontErros">0</b> </div> 
-        <div>Faltam <b id="textqtdeProcessosParaAcabar">37</b> processos para terminar.</div> 
+        <br><br>
         
         <table border="0">
             <thead>
@@ -130,19 +132,19 @@ and open the template in the editor.
                         <div id="MEA02" draggable="true" ondragstart="drag(event)" title="(Monitorar, Avaliar e Analisar Sistema de Controle Interno)">-Monitorar, Avaliar e Analisar Sistema de Controle Interno<br></div>
                         <div id="APO13" draggable="true" ondragstart="drag(event)" title="(Gerenciar Segurança)">-Gerenciar Segurança<br></div>                            
                     </td>
-                    <td>
+                    <td valign="top">
                         <div id="EDM" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
                     </td>
-                    <td>
+                    <td valign="top">
                         <div id="APO" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
                     </td>
-                    <td>
+                    <td valign="top">
                         <div id="BAI" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
                     </td>
-                    <td>
+                    <td valign="top">
                         <div id="DSS" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
                     </td>
-                    <td>
+                    <td valign="top">
                         <div id="MEA" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
                     </td>
                 </tr>
