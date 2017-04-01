@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        
+    <title>jOrgChart - A jQuery OrgChart Plugin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link href="css/prettify.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" src="prettify.js"></script>
+    
+    <!-- jQuery includes -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    
+    <script src="jquery.jOrgChart.js"></script>
+
+    <script>
+    jQuery(document).ready(function() {
+        $("#org").jOrgChart({
+            chartElement : '#chart',
+            dragAndDrop  : true
+        });
+    });
+    
+
+    </script>
+  </head>
+
+  <body onload="prettyPrint();">
+  
+   
+    <ul id="org" style="display:none">
+    <li>
+       DIAGRAMAS
+       <ul>
+           <li>DIAGRAMAS ESTRUTURAIS</li>
+           <li>Diagrama de tempo ou temporal</li>
+           <li>Diagrama de comunicação</li>
+           <li>Diagrama de pacotes</li>
+           <li>Diagrama de instalação ou de implantação</li>
+           <li>Diagrama de estrutura composta</li>
+           <li>Diagrama de classes</li>
+           <li>DIAGRAMAS COMPORTAMENTAIS</li>
+           <li>Diagrama de objetos</li>
+           <li>Diagrama Visão Geral de Interação</li>
+           <li>Diagrama de componentes</li>
+           <li>Diagrama de Máquina de Estado</li>
+           <li>Diagrama de sequência</li>
+           <li>DIAGRAMAS DE INTERAÇÃO</li>
+           <li>Diagrama de perfil</li>
+           <li>Diagrama de caso de uso</li>
+           <li>Diagrama de atividade</li>
+
+       </ul>
+    </li>
+    </ul>            
+
+    <div id="chart" class="orgChart"></div>
+    
+    <script>
+        jQuery(document).ready(function() {
+            
+            /* Custom jQuery for the example */
+            $("#show-list").click(function(e){
+                e.preventDefault();
+                
+                $('#list-html').toggle('fast', function(){
+                    if($(this).is(':visible')){
+                        $('#show-list').text('Hide underlying list.');
+                        $(".topbar").fadeTo('fast',0.9);
+                    }else{
+                        $('#show-list').text('Show underlying list.');
+                        $(".topbar").fadeTo('fast',1);                  
+                    }
+                });
+            });
+            
+            $('#list-html').text($('#org').html());
+            
+            $("#org").bind("DOMSubtreeModified", function() {
+                $('#list-html').text('');
+                
+                $('#list-html').text($('#org').html());
+                
+                prettyPrint();                
+            });
+        });
+
+        function Mudarestado(el) {
+            var display = document.getElementById(el).style.display;
+            
+            if(display == "none")
+                document.getElementById(el).style.display = 'block';
+            else
+                document.getElementById(el).style.display = 'none';
+        }            
+
+    </script>
+
+
+    
+    <div id="minhaDiv" hidden><img src="images/visao-geral-uml-diagramas.png"/></div>
+<button type="button" onclick="Mudarestado('minhaDiv')">Mostrar / Esconder</button>
+
+
+
+</body>
+</html>

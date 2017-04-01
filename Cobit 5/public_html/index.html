@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Drag and Drop HTML5 - DevMedia</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <style type="text/css">
+            #EDM { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
+            #APO { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
+            #BAI { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
+            #DSS { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
+            #MEA { width:220px; height:700px; padding:10px; border:1px solid #aaaaaa; }
+            
+        </style>
+        
+        <style type="text/css">
+            th {font-size: 10pt}
+        </style>
+
+        <script type="text/javascript">
+            
+            var contAcertos = 0;
+            var contErros = 0;
+            var qtdeProcessosParaAcabar = 37;
+            var processosQueForamErrados = " ";
+            
+            function allowDrop(ev){
+                    ev.preventDefault();
+            }
+
+            function drag(ev){
+                ev.dataTransfer.setData("Text",ev.target.id);
+            }
+
+            function drop(ev){
+                var data = ev.dataTransfer.getData("Text");
+                var dominioProc = data.substring(0,3);
+                var dominio = ev.target.id;
+                
+                if (dominio === dominioProc) {
+                    ev.target.appendChild(document.getElementById(data));
+                    ev.preventDefault();
+                    incrementaAcertos();
+                } else {
+                    incrementaErros();                    
+                    processosQueForamErrados = processosQueForamErrados + document.getElementById(data).getAttribute("title") + "; " ;
+                }
+                changeText();
+            }
+
+            function incrementaAcertos(){
+                contAcertos++;
+                qtdeProcessosParaAcabar--;
+            }
+
+            function incrementaErros(){
+                contErros++;
+            }
+
+            function changeText(){
+                document.getElementById("textcontAcertos").innerHTML = contAcertos;
+                document.getElementById("textcontErros").innerHTML = contErros + processosQueForamErrados;
+                document.getElementById("textqtdeProcessosParaAcabar").innerHTML = qtdeProcessosParaAcabar;
+            }
+
+        </script>
+
+    </head>
+    <body>
+        <div>Quantidade de acertos: <b id="textcontAcertos">0</b> </div> 
+        <div>Quantidade de erros: <b id="textcontErros">0</b> </div> 
+        <div>Faltam <b id="textqtdeProcessosParaAcabar">37</b> processos para terminar.</div> 
+        
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>PROCESSOS</th>
+                    <th>EDM - Avaliar, Dirigir e Monitorar</th>
+                    <th>APO - Alinhar, Planejar e Organizar</th>
+                    <th>BAI - Construir, Adquirir e Implementar</th>
+                    <th>DSS - Entregar, Serviço e Suporte</th>
+                    <th>MEA - Monitorar, Avaliara e Analisar</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        
+                        <div id="APO12" draggable="true" ondragstart="drag(event)" title="(Gerenciar Riscos)">-Gerenciar Riscos</div>                        
+                        <div id="DSS03" draggable="true" ondragstart="drag(event)" title="(Gerenciar Problemas)">-Gerenciar Problemas</div>
+                        <div id="EDM04" draggable="true" ondragstart="drag(event)" title="(Garantir a Otimização de Recursos)">-Garantir a Otimização de Recursos<br></div>
+                        <div id="EDM02" draggable="true" ondragstart="drag(event)" title="(Garantir a Realização de Benefícios)">-Garantir a Realização de Benefícios<br></div>
+                        <div id="MEA01" draggable="true" ondragstart="drag(event)" title="(Monitorar, Avaliar e Analisar Desempenho e Conformidade)">-Monitorar, Avaliar e Analisar Desempenho e Conformidade<br></div>
+                        <div id="APO09" draggable="true" ondragstart="drag(event)" title="(Gerenciar Contratos de Prestação de Serviços)">-Gerenciar Contratos de Prestação de Serviços<br></div>
+                        <div id="APO01" draggable="true" ondragstart="drag(event)" title="(Gerenciar a Estrutura de Gestão de TI)">-Gerenciar a Estrutura de Gestão de TI<br></div>
+                        <div id="APO04" draggable="true" ondragstart="drag(event)" title="(Gerenciar Inovação)">-Gerenciar Inovação<br></div>
+                        <div id="BAI07" draggable="true" ondragstart="drag(event)" title="(Gerenciar Aceitação e Transição da Mudança)">-Gerenciar Aceitação e Transição da Mudança<br></div>
+                        <div id="EDM01" draggable="true" ondragstart="drag(event)" title="(Garantir a Definição e Manutenção do Modelo de Governança)">-Garantir a Definição e Manutenção do Modelo de Governança<br></div>
+                        <div id="APO07" draggable="true" ondragstart="drag(event)" title="(Gerenciar Recursos Humanos)">-Gerenciar Recursos Humanos<br></div>
+                        <div id="EDM03" draggable="true" ondragstart="drag(event)" title="(Garantir a Otimização do Risco)">-Garantir a Otimização do Risco<br></div>
+                        <div id="DSS02" draggable="true" ondragstart="drag(event)" title="(Gerenciar Solicitações e Incidentes de Serviços)">-Gerenciar Solicitações e Incidentes de Serviços<br></div>
+                        <div id="BAI04" draggable="true" ondragstart="drag(event)" title="(Gerenciar Disponibilidade e Capacidade)">-Gerenciar Disponibilidade e Capacidade<br></div>
+                        <div id="BAI02" draggable="true" ondragstart="drag(event)" title="(Gerenciar Definição de Requisitos)">-Gerenciar Definição de Requisitos<br></div>
+                        <div id="BAI09" draggable="true" ondragstart="drag(event)" title="(Gerenciar Ativos)">-Gerenciar Ativos<br></div>
+                        <div id="BAI01" draggable="true" ondragstart="drag(event)" title="(Gerenciar Programas e Projetos)">-Gerenciar Programas e Projetos<br></div>
+                        <div id="APO10" draggable="true" ondragstart="drag(event)" title="(Gerenciar Fornecedores)">-Gerenciar Fornecedores<br></div>
+                        <div id="DSS04" draggable="true" ondragstart="drag(event)" title="(Gerenciar Continuidade)">-Gerenciar Continuidade<br></div>
+                        <div id="BAI06" draggable="true" ondragstart="drag(event)" title="(Gerenciar Mudanças)">-Gerenciar Mudanças<br></div>
+                        <div id="APO02" draggable="true" ondragstart="drag(event)" title="(Gerenciar a Estratégia)">-Gerenciar a Estratégia<br></div>
+                        <div id="BAI10" draggable="true" ondragstart="drag(event)" title="(Gerenciar Configuração)">-Gerenciar Configuração<br></div>
+                        <div id="DSS05" draggable="true" ondragstart="drag(event)" title="(Gerenciar Serviços de Segurança)">-Gerenciar Serviços de Segurança<br></div>
+                        <div id="BAI08" draggable="true" ondragstart="drag(event)" title="(Gerenciar Conhecimento)">-Gerenciar Conhecimento<br></div>
+                        <div id="DSS01" draggable="true" ondragstart="drag(event)" title="(Gerenciar Operações)">-Gerenciar Operações<br></div>
+                        <div id="APO05" draggable="true" ondragstart="drag(event)" title="(Gerenciar Portfólio)">-Gerenciar Portfólio<br></div>
+                        <div id="APO11" draggable="true" ondragstart="drag(event)" title="(Gerenciar Qualidade)">-Gerenciar Qualidade<br></div>
+                        <div id="MEA03" draggable="true" ondragstart="drag(event)" title="(Monitorar, Avaliar e Analisar Conformidade com Requisitos Externos)">-Monitorar, Avaliar e Analisar Conformidade com Requisitos Externos<br></div>
+                        <div id="APO08" draggable="true" ondragstart="drag(event)" title="(Gerenciar Relacionamentos)">-Gerenciar Relacionamentos<br></div>
+                        <div id="APO06" draggable="true" ondragstart="drag(event)" title="(Gerenciar Orçamento e Custos)">-Gerenciar Orçamento e Custos<br></div>
+                        <div id="APO03" draggable="true" ondragstart="drag(event)" title="(Gerenciar Arquitetura da Organização)">-Gerenciar Arquitetura da Organização<br></div>
+                        <div id="EDM05" draggable="true" ondragstart="drag(event)" title="(Garantir a Transparência às Partes Interessadas)">-Garantir a Transparência às Partes Interessadas<br></div>
+                        <div id="BAI05" draggable="true" ondragstart="drag(event)" title="(Gerenciar Capacidade de Mudança)">-Gerenciar Capacidade de Mudança<br></div>
+                        <div id="BAI03" draggable="true" ondragstart="drag(event)" title="(Gerenciar Identificação e Construção de Soluções)">-Gerenciar Identificação e Construção de Soluções<br></div>
+                        <div id="DSS06" draggable="true" ondragstart="drag(event)" title="(Gerenciar Controles de Processos de Negocio)">-Gerenciar Controles de Processos de Negocio<br></div>
+                        <div id="MEA02" draggable="true" ondragstart="drag(event)" title="(Monitorar, Avaliar e Analisar Sistema de Controle Interno)">-Monitorar, Avaliar e Analisar Sistema de Controle Interno<br></div>
+                        <div id="APO13" draggable="true" ondragstart="drag(event)" title="(Gerenciar Segurança)">-Gerenciar Segurança<br></div>                            
+                    </td>
+                    <td>
+                        <div id="EDM" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td>
+                        <div id="APO" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td>
+                        <div id="BAI" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td>
+                        <div id="DSS" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td>
+                        <div id="MEA" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
