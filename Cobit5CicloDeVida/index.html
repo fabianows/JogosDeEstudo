@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!-- 
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head> 
+        <meta http-equiv=" content-type" content=" text/html; charset=UTF-8">
+
+        <title>Jogo Ciclo de Vida do Cobit 5 </title>
+
+
+
+        <meta charset=" UTF-8">
+
+        <script src=" analytics.js" async=""></script><script src="jquery_003.js"></script>
+        <script src="jquery-ui.js"></script>
+        <script src="jquery_004.js"></script>
+        <script src="jquery.js"></script>
+        <script src="jquery_002.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="jquery.css" type="text/css">
+        <link rel="stylesheet" href="jquery_002.css" type="text/css">
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-45101054-1', 'paradaprocafe.com.br');
+            ga('send', 'pageview');
+
+        </script>
+
+
+
+        <script type="text/javascript">
+
+
+
+            $(document).ready(function () {
+
+
+
+                $(".drag").live('mouseover', function () {
+                    $(this).draggable({
+                        revert: function (event, ui) {
+                            //overwrite original position
+                            $(this).data("draggable").originalPosition = {
+                                top: 0,
+                                left: 0
+                            };
+                            //return boolean
+                            return !event;
+                        }
+                    });
+                });
+
+
+                $(".drag").live('touchstart', function () {
+                    $(this).draggable({
+                        revert: function (event, ui) {
+                            //overwrite original position
+                            $(this).data("draggable").originalPosition = {
+                                top: 0,
+                                left: 0
+                            };
+                            //return boolean
+                            return !event;
+                        }
+                    });
+                });
+
+                $(".drop").droppable({
+
+                    activeClass: "td-active",
+                    hoverClass: "td-hover",
+                    drop: function (event, ui) {
+
+                        if ($(ui.draggable).attr("id") == $(this).attr("id")) {
+
+                            $(ui.draggable).remove();
+                            $('.hit').text(parseInt($('.hit').text()) + 1);
+                            $('<li class="sucess"></li>').text(ui.draggable.text()).appendTo(this).addClass('sucess').effect("pulsate", {times: 3}, 800);
+                            setTimeout(function () {
+                                $('.sucess').removeClass('sucess');
+                            }, 3000);
+
+                        } else {
+                            $id = ui.draggable.attr("id");
+                            $text = ui.draggable.text();
+                            $('.error').text((parseInt($('.error').text()) + 1));
+                            $(ui.draggable).remove();
+                            $('<li id="fail"></li>').text($text).appendTo(this).addClass("fail").effect("pulsate", {times: 3}, 800);
+                            setTimeout(function () {
+                                $('#fail').remove();
+                            }, 3000);
+
+                            $('<div class="ui-draggable drag" id="' + $id + '"></div>').text($text).appendTo(".process");
+
+                        }
+
+                    }
+                });
+            });
+
+        </script>
+
+
+    </head>
+
+
+
+
+    <body>
+        <div class="content">
+
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td>BASEADO NA 5a VERSÃO DO COBIT</td>
+                        <td>
+                            <div class="result">
+                                <table class="table1 table_result">
+                                    <tbody>
+                                        <tr><th>Corretas</th>
+                                            <td class="hit">0</td>
+                                        </tr></tbody>
+                                </table>
+                                <table class="table1 table_result">
+                                    <tbody>
+                                        <tr><th>Incorretas</th>
+                                            <td class="error">0</td>
+                                        </tr></tbody>
+                                </table>
+                            </div>
+
+                        </td>
+                        <td>Relacione os elementos do ciclo de vida na tabela ao lado</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="left">
+
+                <table class="table1">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="background: none; border:0;"></th>
+                            <th scope="col"><b>Ciclo de vida principal de melhoria contínua</b></th>
+                            <th scope="col"><b>Capacitação da mudança</b></th>
+                            <th scope="col"><b>Gestão do programa</b></th>
+                            <th scope="col"><b>Qual a pergunta?</b></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">1a Fase - reconhecimento e aceitação da necessidade de uma implementação</th>
+                            <td id="1-1" class="drop ui-droppable">
+                                <ul></ul>
+                            </td><td id="1-2" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="1-3" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="1-4" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2a Fase - definição do escopo da implementação</th>
+                            <td id="2-1" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="2-2" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="2-3" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="2-4" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3a Fase - uma meta de melhoria é definida</th>
+                            <td id="3-1" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="3-2" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="3-3" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="3-4" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4a Fase - planeja soluções práticas através da definição de projetos apoiados por estudos de casos justificáveis.</th>
+                            <td id="4-1" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="4-2" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="4-3" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="4-4" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5a Fase - As soluções propostas são implementadas.</th>
+                            <td id="5-1" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="5-2" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="5-3" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="5-4" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6a Fase - monitoramento do atingimento dos benefícios esperados.</th>
+                            <td id="6-1" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="6-2" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="6-3" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="6-4" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7a Fase - o sucesso da iniciativa como um todo é analisado</th>
+                            <td id="7-1" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="7-2" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="7-3" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                            <td id="7-4" class="drop ui-droppable">
+                                <ul></ul>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="right">
+                <div class="process">
+                    <h2 class="process_title">Elementos do Ciclo de Vida</h2>
+
+                    <div class="drag" id="2-2">Formar a equipe de implementação</div>
+                    <div class="drag" id="3-2">Comunicar o resultado</div>
+                    <div class="drag" id="1-4">Quais são os direcionadores?</div>
+                    <div class="drag" id="5-4">Como chegaremos lá?</div>
+                    <div class="drag" id="3-1">Definir o estado alvo</div>
+                    <div class="drag" id="1-2">Estabelecer o desejo de mudança</div>
+                    <div class="drag" id="7-4">Como mantemos esta dinâmica?</div>
+                    <div class="drag" id="2-4">Onde estamos agora?</div>
+                    <div class="drag" id="7-3">Analisar a eficácia</div>
+                    <div class="drag" id="4-2">Identificar o papel das partes</div>
+                    <div class="drag" id="1-3">Iniciar o programa</div>
+                    <div class="drag" id="5-2">Operar e usar</div>
+                    <div class="drag" id="3-4">Onde queremos estar?</div>
+                    <div class="drag" id="6-3">Realizar benefícios</div>
+                    <div class="drag" id="5-3">Executar o plano</div>
+                    <div class="drag" id="7-2">Manter</div>
+                    <div class="drag" id="4-4">O que precisa ser feito?</div>
+                    <div class="drag" id="2-3">Definir problemas e oportunidades</div>
+                    <div class="drag" id="6-2">Incorporar novas abordagens</div>
+                    <div class="drag" id="1-1">Reconhecer a necessidade de agir</div>
+                    <div class="drag" id="6-4">Já chegamos lá?</div>
+                    <div class="drag" id="3-3">Definir o guia de implementação</div>
+                    <div class="drag" id="4-3">Planejar o programa</div>
+                    <div class="drag" id="5-1">Implementar melhorias</div>
+                    <div class="drag" id="6-1">Operar e medir</div>
+                    <div class="drag" id="2-1">Avaliar o estado atual</div>
+                    <div class="drag" id="7-1">Monitorar e analisar</div>
+                    <div class="drag" id="4-1">Construir melhorias</div>
+
+                </div>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+    </body></html>
