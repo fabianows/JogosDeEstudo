@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!-- 
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head> 
+        <meta http-equiv=" content-type" content=" text/html; charset=UTF-8">
+
+        <title>Jogo ISO 27002 - Controles</title>
+
+
+
+        <meta charset=" UTF-8">
+
+        <script src=" analytics.js" async=""></script><script src="jquery_003.js"></script>
+        <script src="jquery-ui.js"></script>
+        <script src="jquery_004.js"></script>
+        <script src="jquery.js"></script>
+        <script src="jquery_002.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="jquery.css" type="text/css">
+        <link rel="stylesheet" href="jquery_002.css" type="text/css">
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-45101054-1', 'paradaprocafe.com.br');
+            ga('send', 'pageview');
+
+        </script>
+
+
+
+        <script type="text/javascript">
+
+
+
+            $(document).ready(function () {
+
+
+
+                $(".drag").live('mouseover', function () {
+                    $(this).draggable({
+                        revert: function (event, ui) {
+                            //overwrite original position
+                            $(this).data("draggable").originalPosition = {
+                                top: 0,
+                                left: 0
+                            };
+                            //return boolean
+                            return !event;
+                        }
+                    });
+                });
+
+
+                $(".drag").live('touchstart', function () {
+                    $(this).draggable({
+                        revert: function (event, ui) {
+                            //overwrite original position
+                            $(this).data("draggable").originalPosition = {
+                                top: 0,
+                                left: 0
+                            };
+                            //return boolean
+                            return !event;
+                        }
+                    });
+                });
+
+                $(".drop").droppable({
+
+                    activeClass: "td-active",
+                    hoverClass: "td-hover",
+                    drop: function (event, ui) {
+
+                        if ($(ui.draggable).attr("id") == $(this).attr("id")) {
+
+                            $(ui.draggable).remove();
+                            $('.hit').text(parseInt($('.hit').text()) + 1);
+                            $('<li class="sucess"></li>').text(ui.draggable.text()).appendTo(this).addClass('sucess').effect("pulsate", {times: 3}, 800);
+                            setTimeout(function () {
+                                $('.sucess').removeClass('sucess');
+                            }, 3000);
+
+                        } else {
+                            $id = ui.draggable.attr("id");
+                            $text = ui.draggable.text();
+                            $('.error').text((parseInt($('.error').text()) + 1));
+                            $(ui.draggable).remove();
+                            $('<li id="fail"></li>').text($text).appendTo(this).addClass("fail").effect("pulsate", {times: 3}, 800);
+                            setTimeout(function () {
+                                $('#fail').remove();
+                            }, 3000);
+
+                            $('<div class="ui-draggable drag" id="' + $id + '"></div>').text($text).appendTo(".process");
+
+                        }
+
+                    }
+                });
+            });
+
+        </script>
+
+
+    </head>
+
+
+
+
+    <body>
+        <div class="content">
+
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td>BASEADO NA ISO 27002 - CONTROLES E SEUS OBJETIVOS</td>
+                        <td>
+                            <div class="result">
+                                <table class="table1 table_result">
+                                    <tbody>
+                                        <tr><th>Corretas</th>
+                                            <td class="hit">0</td>
+                                        </tr></tbody>
+                                </table>
+                                <table class="table1 table_result">
+                                    <tbody>
+                                        <tr><th>Incorretas</th>
+                                            <td class="error">0</td>
+                                        </tr></tbody>
+                                </table>
+                            </div>
+
+                        </td>
+                        <td>Relacione os Controles aos seus objetivos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="left">
+
+                <table class="table1">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="background: #6D6D6D; border:0;">Objetivo do Controle</th>
+                            <th scope="col"><b>Controle</b></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">Prevenir contra divulgação não autorizada, modificação, remoção ou destruição aos ativos, e
+interrupções das atividades do negócio.</th>
+                            <td id="1-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                                                
+                        <tr>
+                            <th scope="row">Não permitir a interrupção das atividades do negócio e proteger os processos críticos contra efeitos
+de falhas ou desastres significativos, e assegurar a sua retomada em tempo hábil, se for o caso.</th>
+                            <td id="2-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Prevenir acesso não autorizado aos serviços de rede.</th>
+                            <td id="3-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Minimizar o risco de falhas nos sistemas.</th>
+                            <td id="4-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>                       
+
+                        <tr>
+                            <th scope="row">Prevenir a ocorrência de erros, perdas, modificação não autorizada ou mau uso de informações em
+aplicações.</th>
+                            <td id="5-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Manter a segurança na troca de informações e softwares internamente à organização e com
+quaisquer entidades externas.</th>
+                            <td id="6-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>                        
+
+                        <tr>
+                            <th scope="row">Manter a segurança de sistemas aplicativos e da informação.</th>
+                            <td id="7-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        
+                        <tr>
+                            <th scope="row">Prover uma orientação e apoio da direção para a segurança da informação de acordo com os
+requisitos do negócio e com as leis e regulamentações relevantes.</th>
+                            <td id="8-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Garantir a segurança da informação quando se utilizam a computação móvel e recursos de trabalho
+remoto.</th>
+                            <td id="9-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Assegurar que um enfoque consistente e efetivo seja aplicado à gestão de incidentes de segurança
+da informação.</th>
+                            <td id="10-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Garantir a segurança de serviços de comércio eletrônico e sua utilização segura.</th>
+                            <td id="11-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Evitar violação de qualquer lei criminal ou civil, estatutos, regulamentações ou obrigações contratuais
+e de quaisquer requisitos de segurança da informação.</th>
+                            <td id="12-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Prevenir o acesso não autorizado dos usuários e evitar o comprometimento ou roubo da informação e
+dos recursos de processamento da informação.</th>
+                            <td id="13-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Proteger a integridade do software e da informação.</th>
+                            <td id="14-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Reduzir riscos resultantes da exploração de vulnerabilidades técnicas conhecidas.</th>
+                            <td id="15-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Prevenir o acesso físico não autorizado, danos e interferências com as instalações e informações da
+organização.</th>
+                            <td id="16-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+
+                        <tr>
+                            <th scope="row">Garantir que segurança é parte integrante de sistemas de informação.</th>
+                            <td id="17-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Implementar e manter o nível apropriado de segurança da informação e de entrega de serviços em
+consonância com acordos de entrega de serviços terceirizados.</th>
+                            <td id="18-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Detectar atividades não autorizadas de processamento da informação.</th>
+                            <td id="19-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Maximizar a eficácia e minimizar a interferência no processo de auditoria dos sistemas de
+informação.</th>
+                            <td id="20-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Gerenciar a segurança da informação dentro da organização.</th>
+                            <td id="21-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Prevenir acesso não autorizado aos sistemas operacionais.</th>
+                            <td id="22-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Impedir perdas, danos, furto ou comprometimento de ativos e interrupção das atividades da
+organização</th>
+                            <td id="23-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Manter a integridade e disponibilidade da informação e dos recursos de processamento de
+informação.</th>
+                            <td id="24-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Assegurar que os funcionários, fornecedores e terceiros estão conscientes das ameaças e
+preocupações relativas à segurança da informação, suas responsabilidades e obrigações, e estão preparados
+para apoiar a política de segurança da informação da organização durante os seus trabalhos normais, e para
+reduzir o risco de erro humano</th>
+                            <td id="25-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Proteger a confidencialidade, a autenticidade ou a integridade das informações por meios
+criptográficos.</th>
+                            <td id="26-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Assegurar que funcionários, fornecedores e terceiros deixem a organização ou mudem de trabalho
+de forma ordenada.</th>
+                            <td id="27-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Garantir conformidade dos sistemas com as políticas e normas organizacionais de segurança da
+informação.</th>
+                            <td id="28-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Assegurar que a informação receba um nível adequado de proteção.</th>
+                            <td id="29-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Assegurar que fragilidades e eventos de segurança da informação associados com sistemas de
+informação sejam comunicados, permitindo a tomada de ação corretiva em tempo hábil.</th>
+                            <td id="30-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Manter a segurança dos recursos de processamento da informação e da informação da organização,
+que são acessados, processados, comunicados ou gerenciados por partes externas.</th>
+                            <td id="31-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Garantir a proteção das informações em redes e a proteção da infra-estrutura de suporte.</th>
+                            <td id="32-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Assegurar acesso de usuário autorizado e prevenir acesso não autorizado a sistemas de informação</th>
+                            <td id="33-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Prevenir acesso não autorizado à informação contida nos sistemas de aplicação.</th>
+                            <td id="34-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Assegurar que os funcionários, fornecedores e terceiros entendam suas responsabilidades e estejam
+de acordo com os seus papéis, e reduzir o risco de roubo, fraude ou mau uso de recursos.</th>
+                            <td id="35-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Alcançar e manter a proteção adequada dos ativos da organização.</th>
+                            <td id="36-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Garantir a operação segura e correta dos recursos de processamento da informação.</th>
+                            <td id="37-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Garantir a segurança de arquivos de sistema.</th>
+                            <td id="38-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Controlar acesso à informação.</th>
+                            <td id="39-1" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                    </tbody>
+                    
+                </table>
+            </div>
+
+            <div class="right">
+                <div class="process">
+                    <h2 class="process_title">Controle</h2>
+
+                    <div class="drag" id="8-1">5.1 Política de segurança da informação</div>
+                    <div class="drag" id="21-1">6.1 Infra-estrutura da segurança da informação</div>
+                    <div class="drag" id="31-1">6.2 Partes externas</div>
+                    <div class="drag" id="36-1">7.1 Responsabilidade pelos ativos</div>
+                    <div class="drag" id="29-1">7.2 Classificação da informação</div>
+                    <div class="drag" id="35-1">8.1 Antes da contratação</div>
+                    <div class="drag" id="25-1">8.2 Durante a contratação</div>
+                    <div class="drag" id="27-1">8.3 Encerramento ou mudança da contratação</div>
+                    <div class="drag" id="16-1">9.1 Áreas seguras</div>
+                    <div class="drag" id="23-1">9.2 Segurança de equipamentos</div>
+                    <div class="drag" id="37-1">10.1 Procedimentos e responsabilidades operacionais</div>
+                    <div class="drag" id="18-1">10.2 Gerenciamento de serviços terceirizados</div>
+                    <div class="drag" id="4-1">10.3 Planejamento e aceitação dos sistemas</div>
+                    <div class="drag" id="14-1">10.4 Proteção contra códigos maliciosos e códigos móveis</div>
+                    <div class="drag" id="24-1">10.5 Cópias de segurança</div>
+                    <div class="drag" id="32-1">10.6 Gerenciamento da segurança em redes</div>
+                    <div class="drag" id="1-1">10.7 Manuseio de mídias</div>
+                    <div class="drag" id="6-1">10.8 Troca de informações</div>
+                    <div class="drag" id="11-1">10.9 Serviços de comércio eletrônico</div>
+                    <div class="drag" id="19-1">10.10 Monitoramento</div>
+                    <div class="drag" id="39-1">11.1 Requisitos de negócio para controle de acesso</div>
+                    <div class="drag" id="33-1">11.2 Gerenciamento de acesso do usuário</div>
+                    <div class="drag" id="13-1">11.3 Responsabilidades dos usuários</div>
+                    <div class="drag" id="3-1">11.4 Controle de acesso à rede</div>
+                    <div class="drag" id="22-1">11.5 Controle de acesso ao sistema operacional</div>
+                    <div class="drag" id="34-1">11.6 Controle de acesso à aplicação e à informação</div>
+                    <div class="drag" id="9-1">11.7 Computação móvel e trabalho remoto</div>
+                    <div class="drag" id="17-1">12.1 Requisitos de segurança de sistemas de informação</div>
+                    <div class="drag" id="5-1">12.2 Processamento correto nas aplicações</div>
+                    <div class="drag" id="26-1">12.3 Controles criptográficos</div>
+                    <div class="drag" id="38-1">12.4 Segurança dos arquivos do sistema</div>
+                    <div class="drag" id="7-1">12.5 Segurança em processos de desenvolvimento e de suporte</div>
+                    <div class="drag" id="15-1">12.6 Gestão de vulnerabilidades técnicas</div>
+                    <div class="drag" id="30-1">13.1 Notificação de fragilidades e eventos de segurança da informação</div>
+                    <div class="drag" id="10-1">13.2 Gestão de incidentes de segurança da informação e melhorias</div>
+                    <div class="drag" id="2-1">14.1 Aspectos da gestão da continuidade do negócio, relativos à segurança da informação</div>
+                    <div class="drag" id="12-1">15.1 Conformidade com requisitos legais</div>
+                    <div class="drag" id="28-1">15.2 Conformidade com normas e políticas de segurança da informação e conformidade técnica</div>
+                    <div class="drag" id="20-1">15.3 Considerações quanto à auditoria de sistemas de informação</div>
+                    
+                </div>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+    </body></html>
