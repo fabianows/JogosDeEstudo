@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Drag and Drop HTML5 - DevMedia</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <style type="text/css">
+            #SS { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #SD { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #ST { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #SO { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #CS { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            
+        </style>
+        
+        <style type="text/css">
+            th {font-size: 10pt}
+        </style>
+
+        <script type="text/javascript">
+            
+            var contAcertos = 0;
+            var contErros = 0;
+            var qtdeProcessosParaAcabar = 26;
+            var processosQueForamErrados = " ";
+            
+            function allowDrop(ev){
+                    ev.preventDefault();
+            }
+
+            function drag(ev){
+                ev.dataTransfer.setData("Text",ev.target.id);
+            }
+
+            function drop(ev){
+                var data = ev.dataTransfer.getData("Text");
+                var dominioProc = data.substring(0,2);
+                var dominio = ev.target.id;
+                
+                if (dominio === dominioProc) {
+                    ev.target.appendChild(document.getElementById(data));
+                    ev.preventDefault();
+                    incrementaAcertos();
+                } else {
+                    incrementaErros();                    
+                    processosQueForamErrados = processosQueForamErrados + document.getElementById(data).getAttribute("title") + "; " ;
+                }
+                changeText();
+            }
+
+            function incrementaAcertos(){
+                contAcertos++;
+                qtdeProcessosParaAcabar--;
+            }
+
+            function incrementaErros(){
+                contErros++;
+            }
+
+            function changeText(){
+                document.getElementById("textcontAcertos").innerHTML = contAcertos;
+                document.getElementById("textcontErros").innerHTML = contErros + processosQueForamErrados;
+                document.getElementById("textqtdeProcessosParaAcabar").innerHTML = qtdeProcessosParaAcabar;
+            }
+
+        </script>
+
+    </head>
+    <body>
+        <p align='center'>Clique e arraste os Processos para cada Fase do Ciclo de Vida de Serviço da ITIL V3</p>
+        <div>Faltam <b id="textqtdeProcessosParaAcabar">37</b> processos para terminar.</div> 
+        <div>Quantidade de acertos: <b id="textcontAcertos">0</b> </div> 
+        <div>Quantidade de erros: <b id="textcontErros">0</b> </div> 
+        <br><br>
+        
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>PROCESSOS</th>
+                    <th>Service Strategy (SS) (5 processos)</th>
+                    <th>Service Design (SD) (8 processos)</th>
+                    <th>Service Transition (ST) (7 processos)</th>
+                    <th>Service Operation (SO) (5 processos)</th>
+                    <th>Continual Service Improvement (CS) (1 processo)</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        
+
+                        <div id="ST07" draggable="true" ondragstart="drag(event)" title="(Validação e Testes do Serviço)">-Validação e Testes do Serviço<br></div>
+                        <div id="SO04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Incidentes)">-Gerenciamento de Incidentes<br></div>
+                        <div id="SS05" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Relacionamento com o Negócio)">-Gerenciamento de Relacionamento com o Negócio<br></div>
+                        <div id="ST05" draggable="true" ondragstart="drag(event)" title="(Gerenciamento do Conhecimento)">-Gerenciamento do Conhecimento<br></div>
+                        <div id="SD07" draggable="true" ondragstart="drag(event)" title="(Gerenciamento do Nível de Serviço)">-Gerenciamento do Nível de Serviço<br></div>
+                        <div id="SO03" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Eventos)">-Gerenciamento de Eventos</div>
+                        <div id="SS01" draggable="true" ondragstart="drag(event)" title="(Geração de Estratégia para Serviços de TI)">-Geração de Estratégia para Serviços de TI<br></div>
+                        <div id="SD02" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Continuidade do Serviço de TI)">-Gerenciamento da Continuidade do Serviço de TI<br></div>
+                        <div id="ST04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Mudança)">-Gerenciamento de Mudança<br></div>
+                        <div id="SD05" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Segurança da Informação)">-Gerenciamento de Segurança da Informação<br></div>
+                        <div id="SS03" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Portfólio de Serviço)">-Gerenciamento de Portfólio de Serviço<br></div>
+                        <div id="CS01" draggable="true" ondragstart="drag(event)" title="(Processo de Melhoria em 7 Etapas)">-Processo de Melhoria em 7 Etapas<br></div>
+                        <div id="SD08" draggable="true" ondragstart="drag(event)" title="(Coordenação de Desenho)">-Coordenação de Desenho<br></div>
+                        <div id="ST02" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Configuração e de Ativo de Serviço)">-Gerenciamento da Configuração e de Ativo de Serviço<br></div>
+                        <div id="SD06" draggable="true" ondragstart="drag(event)" title="(Gerenciamento do Catálogo de Serviço)">-Gerenciamento do Catálogo de Serviço<br></div>
+                        <div id="SO02" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Acesso)">-Gerenciamento de Acesso<br></div>
+                        <div id="SD03" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Disponibilidade)">-Gerenciamento da Disponibilidade<br></div>
+                        <div id="SS04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Demanda)">-Gerenciamento da Demanda<br></div>
+                        <div id="ST01" draggable="true" ondragstart="drag(event)" title="(Avaliação de Mudança)">-Avaliação de Mudança<br></div>
+                        <div id="SD04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Fornecedor)">-Gerenciamento de Fornecedor<br></div>
+                        <div id="ST03" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de liberação e Implantação)">-Gerenciamento de liberação e Implantação<br></div>
+                        <div id="SO05" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Problemas)">-Gerenciamento de Problemas<br></div>
+                        <div id="ST06" draggable="true" ondragstart="drag(event)" title="(Planejamento e Suporte da Transição)">-Planejamento e Suporte da Transição<br></div>
+                        <div id="SS02" draggable="true" ondragstart="drag(event)" title="(Gerenciamento Financeiro)">-Gerenciamento Financeiro<br></div>
+                        <div id="SD01" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Capacidade)">-Gerenciamento da Capacidade<br></div>
+                        <div id="SO01" draggable="true" ondragstart="drag(event)" title="(Cumprimento de Requisições)">-Cumprimento de Requisições<br></div>
+
+                    </td>
+                    <td valign="top">
+                        <div id="SS" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td valign="top">
+                        <div id="SD" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td valign="top">
+                        <div id="ST" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td valign="top">
+                        <div id="SO" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td valign="top">
+                        <div id="CS" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- 
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head> 
+        <meta http-equiv=" content-type" content=" text/html; charset=UTF-8">
+
+        <title>Jogo ISO 27002 - Controles</title>
+
+
+
+        <meta charset=" UTF-8">
+
+        <script src=" analytics.js" async=""></script><script src="jquery_003.js"></script>
+        <script src="jquery-ui.js"></script>
+        <script src="jquery_004.js"></script>
+        <script src="jquery.js"></script>
+        <script src="jquery_002.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="jquery.css" type="text/css">
+        <link rel="stylesheet" href="jquery_002.css" type="text/css">
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-45101054-1', 'paradaprocafe.com.br');
+            ga('send', 'pageview');
+
+        </script>
+
+
+
+        <script type="text/javascript">
+
+
+
+            $(document).ready(function () {
+
+
+
+                $(".drag").live('mouseover', function () {
+                    $(this).draggable({
+                        revert: function (event, ui) {
+                            //overwrite original position
+                            $(this).data("draggable").originalPosition = {
+                                top: 0,
+                                left: 0
+                            };
+                            //return boolean
+                            return !event;
+                        }
+                    });
+                });
+
+
+                $(".drag").live('touchstart', function () {
+                    $(this).draggable({
+                        revert: function (event, ui) {
+                            //overwrite original position
+                            $(this).data("draggable").originalPosition = {
+                                top: 0,
+                                left: 0
+                            };
+                            //return boolean
+                            return !event;
+                        }
+                    });
+                });
+
+                $(".drop").droppable({
+
+                    activeClass: "td-active",
+                    hoverClass: "td-hover",
+                    drop: function (event, ui) {
+
+                        if ($(ui.draggable).attr("id") == $(this).attr("id")) {
+
+                            $(ui.draggable).remove();
+                            $('.hit').text(parseInt($('.hit').text()) + 1);
+                            $('<li class="sucess"></li>').text(ui.draggable.text()).appendTo(this).addClass('sucess').effect("pulsate", {times: 3}, 800);
+                            setTimeout(function () {
+                                $('.sucess').removeClass('sucess');
+                            }, 3000);
+
+                        } else {
+                            $id = ui.draggable.attr("id");
+                            $text = ui.draggable.text();
+                            $('.error').text((parseInt($('.error').text()) + 1));
+                            $(ui.draggable).remove();
+                            $('<li id="fail"></li>').text($text).appendTo(this).addClass("fail").effect("pulsate", {times: 3}, 800);
+                            setTimeout(function () {
+                                $('#fail').remove();
+                            }, 3000);
+
+                            $('<div class="ui-draggable drag" id="' + $id + '"></div>').text($text).appendTo(".process");
+
+                        }
+
+                    }
+                });
+            });
+
+        </script>
+
+
+    </head>
+
+
+
+
+    <body>
+        <div class="content">
+
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td>BASEADO NA ISO 27002 - CONTROLES ESSENCIAIS E PRÁTICAS</td>
+                        <td>
+                            <div class="result">
+                                <table class="table1 table_result">
+                                    <tbody>
+                                        <tr><th>Corretas</th>
+                                            <td class="hit">0</td>
+                                        </tr></tbody>
+                                </table>
+                                <table class="table1 table_result">
+                                    <tbody>
+                                        <tr><th>Incorretas</th>
+                                            <td class="error">0</td>
+                                        </tr></tbody>
+                                </table>
+                            </div>
+
+                        </td>
+                        <td>Relacione os Controles aos seus Tipos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="left">
+
+                <table class="table1">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="background: #6D6D6D; border:0;">Descrição do Controle</th>
+                            <th scope="col"><b>Considerados Esseciais</b></th>
+                            <th scope="col"><b>Considerados Práticas para a SI</b></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">Convém que procedimentos apropriados sejam implementados para garantir a conformidade com os requisitos
+legislativos, regulamentares e contratuais no uso de material, em relação aos quais pode haver direitos de
+propriedade intelectual e sobre o uso de produtos de software proprietários.</th>
+                            <td id="1-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="1-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">Prevenir a ocorrência de erros, perdas, modificação não autorizada ou mau uso de informações em
+aplicações.</th>
+                            <td id="2-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="2-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Convém que todos os funcionários da organização e, onde pertinente, fornecedores e terceiros recebam
+treinamento apropriados em conscientização, e atualizações regulares nas políticas e procedimentos
+organizacionais, relevantes para as suas funções.</th>
+                            <td id="3-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="3-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Não permitir a interrupção das atividades do negócio e proteger os processos críticos contra efeitos
+de falhas ou desastres significativos, e assegurar a sua retomada em tempo hábil, se for o caso.</th>
+                            <td id="4-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="4-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Convém que a privacidade e proteção de dados sejam asseguradas conforme exigido nas legislações
+relevantes, regulamentações e, se aplicável, nas cláusulas contratuais.</th>
+                            <td id="5-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="5-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Assegurar que um enfoque consistente e efetivo seja aplicado à gestão de incidentes de segurança
+da informação.</th>
+                            <td id="6-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="6-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Convém que todas as responsabilidades pela segurança da informação, estejam claramente definidas.</th>
+                            <td id="7-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="7-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Convém que registros importantes sejam protegidos contra perda, destruição e falsificação, de acordo com os
+requisitos regulamentares, estatutários, contratuais e do negócio.</th>
+                            <td id="8-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="8-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Reduzir riscos resultantes da exploração de vulnerabilidades técnicas conhecidas.</th>
+                            <td id="9-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="9-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Convém que um documento da política de segurança da informação seja aprovado pela direção, publicado e
+comunicado para todos os funcionários e partes externas relevantes.</th>
+                            <td id="10-1" class="drop ui-droppable"><ul></ul></td>
+                            <td id="10-2" class="drop ui-droppable"><ul></ul></td>
+                        </tr>
+                        
+                        
+                    </tbody>
+                    
+                </table>
+            </div>
+
+            <div class="right">
+                <div class="process">
+                    <h2 class="process_title">Controle</h2>
+
+                    <div class="drag" id="0">10.1 Procedimentos e responsabilidades operacionais</div>
+                    <div class="drag" id="10-2">5.1.1 Documento da política de segurança da informação</div>
+                    <div class="drag" id="0">11.6 Controle de acesso à aplicação e à informação</div>
+                    <div class="drag" id="8-1">15.1.3 Proteção de registros organizacionais</div>
+                    <div class="drag" id="4-2">14 Gestão da continuidade do negócio</div>
+                    <div class="drag" id="0">12.1 Requisitos de segurança de sistemas de informação</div>
+                    <div class="drag" id="7-2">6.1.3 Atribuição de responsabilidades para a segurança da informação</div>
+                    <div class="drag" id="2-2">12.2 Processamento correto nas aplicações</div>
+                    <div class="drag" id="0">10.5 Cópias de segurança</div>
+                    <div class="drag" id="9-2">12.6 Gestão de vulnerabilidades técnicas</div>
+                    <div class="drag" id="1-1">15.1.2 Direitos de propriedade intelectual</div>
+                    <div class="drag" id="0">7.1 Responsabilidade pelos ativos</div>
+                    <div class="drag" id="3-2">8.2.2 Conscientização, educação e treinamento em segurança da informação</div>
+                    <div class="drag" id="0">11.3 Responsabilidades dos usuários</div>
+                    <div class="drag" id="6-2">13.2 Gestão de incidentes de segurança da informação e melhorias</div>
+                    <div class="drag" id="5-1">15.1.4 Proteção de dados e privacidade de informações pessoais</div>
+
+                    
+                </div>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+    </body></html>
