@@ -10,11 +10,12 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
         <style type="text/css">
-            #SS { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
-            #SD { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
-            #ST { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
-            #SO { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
-            #CS { width:200px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #SS { width:170px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #SD { width:170px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #ST { width:170px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #SO { width:170px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #CS { width:170px; height:500px; padding:1px; border:1px solid #aaaaaa; }
+            #FC { width:170px; height:500px; padding:1px; border:1px solid #aaaaaa; }
             
         </style>
         
@@ -26,7 +27,7 @@ and open the template in the editor.
             
             var contAcertos = 0;
             var contErros = 0;
-            var qtdeProcessosParaAcabar = 26;
+            var qtdeProcessosParaAcabar = 30;
             var processosQueForamErrados = " ";
             
             function allowDrop(ev){
@@ -87,7 +88,7 @@ and open the template in the editor.
                     <th>Service Transition (ST) (7 processos)</th>
                     <th>Service Operation (SO) (5 processos)</th>
                     <th>Continual Service Improvement (CS) (1 processo)</th>
-                    
+                    <th>Funções do Service Operation (4 funções)</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -97,14 +98,17 @@ and open the template in the editor.
 
                         <div id="ST07" draggable="true" ondragstart="drag(event)" title="(Validação e Testes do Serviço)">-Validação e Testes do Serviço<br></div>
                         <div id="SO04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Incidentes)">-Gerenciamento de Incidentes<br></div>
+                        <div id="FC03" draggable="true" ondragstart="drag(event)" title="(Cumprimento de Requisições)">-Gerenciamento de Aplicações<br></div>
                         <div id="SS05" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Relacionamento com o Negócio)">-Gerenciamento de Relacionamento com o Negócio<br></div>
                         <div id="ST05" draggable="true" ondragstart="drag(event)" title="(Gerenciamento do Conhecimento)">-Gerenciamento do Conhecimento<br></div>
                         <div id="SD07" draggable="true" ondragstart="drag(event)" title="(Gerenciamento do Nível de Serviço)">-Gerenciamento do Nível de Serviço<br></div>
+                        <div id="FC04" draggable="true" ondragstart="drag(event)" title="(Cumprimento de Requisições)">-Gerenciamento de Operações de TI<br></div>
                         <div id="SO03" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Eventos)">-Gerenciamento de Eventos</div>
                         <div id="SS01" draggable="true" ondragstart="drag(event)" title="(Geração de Estratégia para Serviços de TI)">-Geração de Estratégia para Serviços de TI<br></div>
                         <div id="SD02" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Continuidade do Serviço de TI)">-Gerenciamento da Continuidade do Serviço de TI<br></div>
                         <div id="ST04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Mudança)">-Gerenciamento de Mudança<br></div>
                         <div id="SD05" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Segurança da Informação)">-Gerenciamento de Segurança da Informação<br></div>
+                        <div id="FC02" draggable="true" ondragstart="drag(event)" title="(Cumprimento de Requisições)">-Gerenciamento Técnico<br></div>
                         <div id="SS03" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Portfólio de Serviço)">-Gerenciamento de Portfólio de Serviço<br></div>
                         <div id="CS01" draggable="true" ondragstart="drag(event)" title="(Processo de Melhoria em 7 Etapas)">-Processo de Melhoria em 7 Etapas<br></div>
                         <div id="SD08" draggable="true" ondragstart="drag(event)" title="(Coordenação de Desenho)">-Coordenação de Desenho<br></div>
@@ -112,6 +116,7 @@ and open the template in the editor.
                         <div id="SD06" draggable="true" ondragstart="drag(event)" title="(Gerenciamento do Catálogo de Serviço)">-Gerenciamento do Catálogo de Serviço<br></div>
                         <div id="SO02" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Acesso)">-Gerenciamento de Acesso<br></div>
                         <div id="SD03" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Disponibilidade)">-Gerenciamento da Disponibilidade<br></div>
+                        <div id="FC01" draggable="true" ondragstart="drag(event)" title="(Cumprimento de Requisições)">-Central de Serviços<br></div>
                         <div id="SS04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Demanda)">-Gerenciamento da Demanda<br></div>
                         <div id="ST01" draggable="true" ondragstart="drag(event)" title="(Avaliação de Mudança)">-Avaliação de Mudança<br></div>
                         <div id="SD04" draggable="true" ondragstart="drag(event)" title="(Gerenciamento de Fornecedor)">-Gerenciamento de Fornecedor<br></div>
@@ -121,6 +126,8 @@ and open the template in the editor.
                         <div id="SS02" draggable="true" ondragstart="drag(event)" title="(Gerenciamento Financeiro)">-Gerenciamento Financeiro<br></div>
                         <div id="SD01" draggable="true" ondragstart="drag(event)" title="(Gerenciamento da Capacidade)">-Gerenciamento da Capacidade<br></div>
                         <div id="SO01" draggable="true" ondragstart="drag(event)" title="(Cumprimento de Requisições)">-Cumprimento de Requisições<br></div>
+
+x
 
                     </td>
                     <td valign="top">
@@ -137,6 +144,9 @@ and open the template in the editor.
                     </td>
                     <td valign="top">
                         <div id="CS" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+                    </td>
+                    <td valign="top">
+                        <div id="FC" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
                     </td>
                 </tr>
             </tbody>
