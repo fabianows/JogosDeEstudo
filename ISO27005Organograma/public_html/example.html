@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        
+    <title>jOrgChart - A jQuery OrgChart Plugin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link href="css/prettify.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" src="prettify.js"></script>
+    
+    <!-- jQuery includes -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    
+    <script src="jquery.jOrgChart.js"></script>
+
+    <script>
+    jQuery(document).ready(function() {
+        $("#org").jOrgChart({
+            chartElement : '#chart',
+            dragAndDrop  : true
+        });
+    });
+    
+    jQuery(document).ready(function() {
+        $("#org2").jOrgChart2({
+            chartElement : '#chart2',
+            dragAndDrop  : true
+        });
+    });
+
+    </script>
+  </head>
+
+  <body onload="prettyPrint();">
+  
+   
+      <ul id="org" style="display:none">    
+          <li>
+              SEQUÊNCIA DE ETAPAS DA GRSI
+              <ul>
+                  <li>ETAPA 1</li>
+                  <li>Ação de evitar o risco</li>
+                  <li>Critérios de impacto</li>
+                  <li>Monitoramento, análise crítica e melhoria do processo de gestão de riscos</li>
+                  <li>Modificação do risco</li>
+                  <li>Identificação das vulnerabilidades</li>
+                  <li>Critérios para a aceitação do risco</li>
+                  <li>Retenção do risco</li>
+                  <li>Organização para gestão de riscos de segurança da informação</li>
+                  <li>ETAPA 2</li>
+                  <li>Avaliação de riscos</li>
+                  <li>Critérios para a avaliação de riscos</li>
+                  <li>Identificação dos ativos</li>
+                  <li>Monitoramento e análise crítica dos fatores de risco</li>
+                  <li>Identificação de riscos</li>
+                  <li>Critérios básicos</li>
+                  <li>ETAPA 3</li>
+                  <li>Identificação das consequências</li>
+                  <li>Análise de riscos</li>
+                  <li>Definição do contexto</li>
+                  <li>Monitoramento e análise crítica de riscos</li>
+                  <li>Avaliação das consequências</li>
+                  <li>Avaliação da probabilidade dos incidentes</li>
+                  <li>Determinação do nível de risco</li>
+                  <li>ETAPA 4</li>
+                  <li>Identificação das ameaças</li>
+                  <li>Tratamento do risco</li>
+                  <li>Processo de avaliação de riscos</li>
+                  <li>Escopo e limites</li>
+                  <li>Compartilhamento do risco</li>
+                  <li>Aceitação do risco</li>
+                  <li>Comunicação e consulta do risco</li>
+                  <li>Identificação dos controles existentes</li>
+                  <li>ETAPA PARALELA 1</li>
+                  <li>ETAPA PARALELA 2</li>
+
+              </ul>
+          </li>   
+      </ul>                 
+      
+    <div id="chart" class="orgChart"></div>
+    
+    <script>
+        jQuery(document).ready(function() {
+            
+            /* Custom jQuery for the example */
+            $("#show-list").click(function(e){
+                e.preventDefault();
+                
+                $('#list-html').toggle('fast', function(){
+                    if($(this).is(':visible')){
+                        $('#show-list').text('Hide underlying list.');
+                        $(".topbar").fadeTo('fast',0.9);
+                    }else{
+                        $('#show-list').text('Show underlying list.');
+                        $(".topbar").fadeTo('fast',1);                  
+                    }
+                });
+            });
+            
+            $('#list-html').text($('#org').html());
+            
+            $("#org").bind("DOMSubtreeModified", function() {
+                $('#list-html').text('');
+                
+                $('#list-html').text($('#org').html());
+                
+                prettyPrint();                
+            });
+        });
+
+        function Mudarestado(el) {
+            var display = document.getElementById(el).style.display;
+            
+            if(display == "none")
+                document.getElementById(el).style.display = 'block';
+            else
+                document.getElementById(el).style.display = 'none';
+        }            
+
+    </script>
+
+
+
+<div id="minhaDiv" hidden><img src="images/visao-geral-uml-diagramas.png"/></div>
+<button type="button" onclick="Mudarestado('minhaDiv')">Mostrar / Esconder</button>
+
+</body>
+</html>
